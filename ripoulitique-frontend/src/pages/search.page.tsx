@@ -73,8 +73,11 @@ function SearchPage() {
             <CardHeader>
               <div className="flex flex-row justify-between">
                 <CardTitle className="text-lg justify-start">{`${politic.gender} ${politic.firstName} ${politic.lastName}`}</CardTitle>
-                <Avatar className="justify-end">
-                  <AvatarImage src={politic.profilePicture} />
+                <Avatar className="justify-end overflow-hidden">
+                  <AvatarImage
+                    className="overflow-hidden"
+                    src={politic.profilePicture}
+                  />
                   <AvatarFallback>{`${politic.firstName[0]}${politic.lastName[0]}`}</AvatarFallback>
                 </Avatar>
               </div>
@@ -83,7 +86,13 @@ function SearchPage() {
             <CardContent></CardContent>
             <CardFooter className="flex-col gap-2">
               <Button type="submit" className="w-full">
-                <Link to={`/search/${politic.id}`}>Qu'à fait ce chenapan</Link>
+                <Link to={`/search/${politic.id}`}>
+                  Qu'à fait
+                  {politic.gender === "M."
+                    ? "ce chenapan"
+                    : "cette polissonne"}{" "}
+                  ?
+                </Link>
               </Button>
             </CardFooter>
           </Card>

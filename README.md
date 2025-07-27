@@ -1,2 +1,3 @@
-# ripoulitique
-Trouvez rapidement les bêtises publiquement connues de votre politique préféré.
+# Ripoulitique
+
+Retrouvez facilement en un seul endroit toutes les bêtises de vos personnalités politiques préférées.

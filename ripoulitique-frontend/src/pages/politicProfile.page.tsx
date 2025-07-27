@@ -12,6 +12,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import SourceButton from "@/components/custom/source";
+import React from "react";
+import { getPoliticTagDisplay } from "@/components/custom/formatTags";
 // TODO
 // Rajouter la peine reçue
 
@@ -31,9 +33,20 @@ function PoliticProfilePage() {
             {`${politic.firstName[0]}${politic.lastName[0]}`}
           </AvatarFallback>
         </Avatar>
-        <h1 className="text-4xl font-bold mb-4">{`${politic.gender} ${politic.firstName} ${politic.lastName}`}</h1>
+        <div className="flex flex-col">
+          <h1 className="text-4xl font-bold mb-4">{`${politic.gender} ${politic.firstName} ${politic.lastName}`}</h1>
+          {politic.tags && (
+            <div className="flex flex-wrap gap-1">
+              {politic.tags.map((tag, index) => (
+                <React.Fragment key={index}>
+                  {getPoliticTagDisplay(tag)}
+                </React.Fragment>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-      <Table>
+      <Table className="px-4">
         <TableCaption>
           Il manque une espièglerie ?{" "}
           <Link to="/contact" className="text-blue-700">

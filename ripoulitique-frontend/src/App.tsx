@@ -4,15 +4,16 @@ import HomePage from "./pages/home.page";
 import SearchPage from "./pages/search.page";
 import PoliticProfilePage from "./pages/politicProfile.page";
 import ContactPage from "./pages/contact.page";
+import BottomAccordion from "./components/custom/bottomAccordion";
 
-// TODO
-// Contact page
+// TODO:
+// formatting des tags
 
 function App() {
   return (
     <div className="min-h-screen bg-background">
       <MainNavBar />
-      <main>
+      <main className="p-8 max-w-7xl mx-auto">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
@@ -20,6 +21,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>
+      <BottomAccordion />
     </div>
   );
 }

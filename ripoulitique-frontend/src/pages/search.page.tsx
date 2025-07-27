@@ -1,15 +1,16 @@
+import { getPoliticTagDisplay } from "@/components/custom/formatTags";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CONTACT_MAIL } from "@/data/config";
 import PoliticsList from "@/data/politicsList";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SearchPage() {
@@ -41,13 +42,12 @@ function SearchPage() {
   });
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold mb-4">Recherche</h1>
-      <p className="text-gray-600 mb-8">
-        Trouvez les bêtises de votre personnalité politique préférée.
-      </p>
+    <div>
+      <h1 className="text-4xl font-bold">
+        Rechercher les bêtises de vos personnalités politiques préférées
+      </h1>
 
-      <div className="mb-6 max-w-md">
+      <div className="py-4 mb-6 max-w-md">
         <input
           type="text"
           placeholder="Rechercher par nom, parti, type de farce..."
@@ -64,7 +64,7 @@ function SearchPage() {
         {filteredPolitics.length !== 1 ? "s" : ""}
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredPolitics.map((politic) => (
           <Card
             key={politic.id}
@@ -73,24 +73,31 @@ function SearchPage() {
             <CardHeader>
               <div className="flex flex-row justify-between">
                 <CardTitle className="text-lg justify-start">{`${politic.gender} ${politic.firstName} ${politic.lastName}`}</CardTitle>
-                <Avatar className="justify-end overflow-hidden">
+                <Avatar className="justify-end flex overflow-hidden">
                   <AvatarImage
-                    className="overflow-hidden"
+                    className="w-full h-full object-cover"
                     src={politic.profilePicture}
                   />
                   <AvatarFallback>{`${politic.firstName[0]}${politic.lastName[0]}`}</AvatarFallback>
                 </Avatar>
               </div>
-              <CardDescription>{`${politic.tags}`}</CardDescription>
+              {politic.tags && (
+                <CardDescription className="flex flex-wrap gap-1">
+                  {politic.tags.map((tag, index) => (
+                    <React.Fragment key={index}>
+                      {getPoliticTagDisplay(tag)}
+                    </React.Fragment>
+                  ))}
+                </CardDescription>
+              )}
             </CardHeader>
-            <CardContent></CardContent>
             <CardFooter className="flex-col gap-2">
               <Button type="submit" className="w-full">
                 <Link to={`/search/${politic.id}`}>
                   Qu'à fait
                   {politic.gender === "M."
-                    ? "ce chenapan"
-                    : "cette polissonne"}{" "}
+                    ? " ce polisson"
+                    : " cette polissonne"}{" "}
                   ?
                 </Link>
               </Button>
@@ -98,6 +105,12 @@ function SearchPage() {
           </Card>
         ))}
       </div>
+      {filteredPolitics.length === 0 && (
+        <div>
+          Il manque une espièglerie ? Un chenapan nous a échappé ? Contactez
+          nous à {`${CONTACT_MAIL}`}
+        </div>
+      )}
     </div>
   );
 }

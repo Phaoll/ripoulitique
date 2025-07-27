@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
-    <div className="p-8 items-center justify-center">
-      <h1 className="text-4xl font-bold mb-4">Ripoulitique</h1>
+    <div className="flex flex-col items-center justify-center gap-y-4">
+      <img src="/logo.svg" alt="Home" className="h-48" />
       <p className="text-muted-foreground">
         Trouvez rapidement les bêtises de vos personnalités politiques
         préférées.

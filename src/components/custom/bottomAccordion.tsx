@@ -42,9 +42,16 @@ export default function BottomAccordion() {
           <AccordionContent className="flex flex-col gap-4 text-balance">
             <p>
               Contribuer à Ripoulitique se fait en écrivant à{" "}
-              {<a href={`${CONTACT_MAIL}`}>{`${CONTACT_MAIL}`}</a>}. Toutes les
-              contributions sont analysées à la main pour répondre aux critères
-              suivant:
+              {
+                <a
+                  href={`mailto:${CONTACT_MAIL}`}
+                  className="text-blue-600 hover:text-blue-800 underline hover:no-underline transition-colors duration-200"
+                >
+                  {`${CONTACT_MAIL}`}
+                </a>
+              }
+              . Toutes les contributions sont analysées à la main pour répondre
+              aux critères suivant:
             </p>
             <ul className="list-disc list-inside space-y-2">
               <li className="text-pretty">

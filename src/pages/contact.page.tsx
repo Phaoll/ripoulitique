@@ -6,8 +6,16 @@ function ContactPage() {
       <h1 className="text-4xl font-bold mb-4">Contacter Ripoulitique</h1>
       <p>
         Une erreur ? Il manque une espièglerie ? Un chenapan nous a échappé ?
-        Contactez nous à {<a href={`${CONTACT_MAIL}`}>{`${CONTACT_MAIL}`}</a>}.
-        Toutes les contributions sont analysées à la main pour répondre aux
+        Contactez nous à{" "}
+        {
+          <a
+            href={`mailto:${CONTACT_MAIL}`}
+            className="text-blue-600 hover:text-blue-800 underline hover:no-underline transition-colors duration-200"
+          >
+            {`${CONTACT_MAIL}`}
+          </a>
+        }
+        . Toutes les contributions sont analysées à la main pour répondre aux
         critères suivant:
       </p>
       <ul className="list-disc list-inside space-y-2">

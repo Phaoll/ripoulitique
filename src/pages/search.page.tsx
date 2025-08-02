@@ -108,7 +108,7 @@ function SearchPage() {
       {filteredPolitics.length === 0 && (
         <div>
           Il manque une espièglerie ? Un chenapan nous a échappé ? Contactez
-          nous à {`${CONTACT_MAIL}`}
+          nous à {<a href={`${CONTACT_MAIL}`}>{`${CONTACT_MAIL}`}</a>}.
         </div>
       )}
     </div>
